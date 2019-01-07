@@ -5,6 +5,7 @@ https://www.youtube.com/watch?v=T5pRlIbr6gg&list=PL2-dafEMk2A6QKz1mrk1uIGfHkC1zZ
 
 from sklearn import tree
 from sklearn import svm
+from sklearn.metrics import accuracy_score
 
 #Data: [height, weight, shoe size]
 x = [[181,80,44], [177,70,43], [160,60,38], [154,54,37], [166,65,40],
@@ -22,18 +23,16 @@ clf_SVM = svm.SVC(gamma='auto')
 clf_DTC = clf_DTC.fit(x, y)
 clf_SVM = clf_SVM.fit(x, y)
 
-diff = list(set(y)-set(z))
 
-print(diff)
+#Test model
+prediction_scores = {}
+
+DTC_prediction = clf_DTC.predict(x)
+DTC_score = accuracy_score(y, DTC_prediction)
+
+print("DTC Prediction Score: {}".format(DTC_score*100))
 
 """
-#Test model
-index = 0
-for data in x:
-    prediction = clf_DTC.predict([data])
-    print("DTC Prediction: {}".format(prediction))
-print('\n')
-
 for data in x:
     prediction = clf_SVM.predict([data])
     print("SVM Prediction: {}".format(prediction))
