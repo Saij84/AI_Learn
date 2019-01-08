@@ -34,20 +34,22 @@ clf_RFC.fit(x, y)
 prediction_scores = {}
 
 DTC_prediction = clf_DTC.predict(x)
-DTC_score = accuracy_score(y, DTC_prediction)*100
+DTC_score = accuracy_score(y, DTC_prediction)
 print("DTC Prediction Score: {}".format(DTC_score))
 
 SVM_prediction = clf_SVM.predict(x)
-SVM_score = accuracy_score(y, SVM_prediction)*100
+SVM_score = accuracy_score(y, SVM_prediction)
 print("SVM Prediction Score: {}".format(SVM_score))
 
 NC_predictions = clf_NC.predict(x)
-NC_score = accuracy_score(y, NC_predictions)*100
+NC_score = accuracy_score(y, NC_predictions)
 print("NC Prediction Score: {}".format(NC_score))
 
 RFC_predictions = clf_RFC.predict(x)
-RFC_score = accuracy_score(y, RFC_predictions)*100
-print("RFC Predcition Score: {}".format(RFC_score))
+RFC_score = accuracy_score(y, RFC_predictions)
+print("RFC Prediction Score: {}".format(RFC_score))
 
+#Printing out result
+scoreDict = {0:"SVM_prediction", 1:"NC_predictions", 2:"RFC_predictions"}
 bestModel = np.argmax([SVM_prediction, NC_predictions, RFC_predictions])
-print(bestModel)
+print("Best prediction was given by {}".format(scoreDict[bestModel]))
